@@ -27,9 +27,11 @@ const SearchBar = ({ setSearchResults }) => {
   }
 
   function doSearch(){
-    getResults(searchTerm).then(json => {
-      setSearchResults(json)
-    })
+    if(searchTerm){
+      getResults(searchTerm).then(json => {
+        setSearchResults(json)
+      })
+    }
   }
 
   return(
@@ -37,6 +39,7 @@ const SearchBar = ({ setSearchResults }) => {
       <FormControl className="search" onSubmit={handleSubmit} sx={{ m: 1, width: '30ch' }} variant="outlined">
       <InputLabel>Bing Search</InputLabel>
       <OutlinedInput
+        required={true}
         id="bing-search"
         onChange={handleChange}
         onKeyDown={handleOnKeyDown}
